@@ -41,5 +41,5 @@ struct Picture: Codable {
 
 struct Location: Codable {
     let street: String
-    let thumbnail: String
+    let city: String
 }

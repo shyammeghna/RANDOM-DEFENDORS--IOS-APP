@@ -9,11 +9,11 @@
 import UIKit
 
 class userTableViewCell: UITableViewCell {
-    var results : [cont]?
+
 
     @IBOutlet weak var labelname: UILabel!
     
-    @IBOutlet weak var labelmail: UILabel!
+    @IBOutlet weak var labelMail: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -17,6 +17,7 @@ class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        fetchUsers()
     }
 
     func fetchUsers(){
@@ -43,18 +44,27 @@ class TableViewController: UIViewController {
 
 extension TableViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return personArray?.count ?? 0
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //guard let cell=tableView.dequeueReusableCell(withIdentifier: <#T##String#>, for: <#T##IndexPath#>)
-        return userTableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as? userTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        if let person = personArray?[indexPath.row] {
+            print("test")
+            cell.labelname.text = person.name.first
+            cell.labelMail.text = person.email
+            
+        }
+        return cell
     }
     
     
 }
 
-extension UITableViewController : UITableViewDelegate{
-    
+extension TableViewController : UITableViewDelegate{
+
 }
