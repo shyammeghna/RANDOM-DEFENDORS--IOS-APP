@@ -11,6 +11,7 @@ import UIKit
 class TableViewController: UIViewController {
 
     var personArray : [PersonDetail]?
+    var selectRes :PersonDetail?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,6 +19,14 @@ class TableViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         fetchUsers()
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        guard let detailViewController = segue.destination as? Def_ViewController else {
+            return
+        }
+        print("Ready")
+        Def_ViewController.present = selectRes
     }
 
     func fetchUsers(){
@@ -38,6 +47,14 @@ class TableViewController: UIViewController {
                 print("JSON Serialization ERROR: ", error)
             }
             }.resume()
+    }
+    func formatName(userName: Name) -> String {
+        return userName.title.capitalized + " " + userName.first.capitalized + " " + userName.last.uppercased()
+    }
+    
+    func getImage(url : URL)  -> UIImage{
+        let data: Data = try! Data(contentsOf: url)
+        return UIImage(data: data) ?? UIImage()
     }
     
 }

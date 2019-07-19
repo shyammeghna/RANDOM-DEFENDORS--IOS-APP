@@ -12,8 +12,7 @@ class userTableViewCell: UITableViewCell {
 
 
     @IBOutlet weak var labelname: UILabel!
-    
-    @IBOutlet weak var labelMail: UILabel!
+    @IBOutlet weak var labelMail:UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
