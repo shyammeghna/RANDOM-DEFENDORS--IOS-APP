@@ -10,21 +10,46 @@ import UIKit
 
 class Def_ViewController: UIViewController {
 
+    var result:PersonDetail?
+    @IBOutlet weak var Lname: UILabel!
+    @IBOutlet weak var Lstreet: UILabel!
+    @IBOutlet weak var Lcity: UILabel!
+    @IBOutlet weak var Lemail: UILabel!
+    @IBOutlet weak var Lphone: UILabel!
+    @IBOutlet weak var Lcell: UILabel!
+    
+    
+    @IBOutlet weak var image: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+         showdata()
+    }
+    func formatName(userName: Name) -> String {
+        return userName.title.capitalized + " " + userName.first.capitalized + " " + userName.last.uppercased()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func showdata(){
+        let name = formatName(userName: result!.name)
+        Lname.text = name
+        Lemail.text = result?.email
+        Lcell.text = result?.cell
+        Lphone.text = result?.phone
+        Lstreet.text = result?.location.street
+        Lcity.text = result?.location.city
+        setImage(url: URL(string: (result?.picture.large)!)!)
     }
-    */
+    
+    func setImage(url : URL) {
+        let data: Data = try! Data(contentsOf: url)
+        image.image = UIImage(data: data)
+    }
+    
+    
+
+    
 
 }

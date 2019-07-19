@@ -22,11 +22,12 @@ class TableViewController: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        guard let detailViewController = segue.destination as? Def_ViewController else {
+        guard let defViewController = segue.destination as? Def_ViewController else {
             return
         }
         print("Ready")
-        Def_ViewController.present = selectRes
+        defViewController.result=selectRes
+        
     }
 
     func fetchUsers(){

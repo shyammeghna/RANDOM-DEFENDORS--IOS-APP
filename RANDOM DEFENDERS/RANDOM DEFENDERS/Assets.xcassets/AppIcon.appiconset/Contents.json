@@ -1,9 +1,8 @@
 {
   "images" : [
     {
-      "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "istockphoto2-612011678-1024x1024.jpg",
+      "size" : "20x20",
       "scale" : "2x"
     },
     {

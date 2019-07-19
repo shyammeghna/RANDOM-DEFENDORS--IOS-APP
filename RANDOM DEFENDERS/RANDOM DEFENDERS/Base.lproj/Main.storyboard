@@ -93,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="37.681159420289859" y="18.75"/>
         </scene>
-        <!--View Controller-->
+        <!--Def View Controller-->
         <scene sceneID="IXL-bC-42h">
             <objects>
-                <viewController id="apr-Wb-PfW" sceneMemberID="viewController">
+                <viewController id="apr-Wb-PfW" customClass="Def_ViewController" customModule="RANDOM_DEFENDERS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qfc-Xo-dTr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,6 +180,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pc4-K2-mKM"/>
                     </view>
+                    <connections>
+                        <outlet property="Lcell" destination="BzA-RY-0Fw" id="INN-uA-MHR"/>
+                        <outlet property="Lcity" destination="cTB-Ec-9Xw" id="GvV-nD-flw"/>
+                        <outlet property="Lemail" destination="zEy-5l-qrm" id="DtN-rQ-6hc"/>
+                        <outlet property="Lname" destination="arm-IE-QB0" id="ECf-13-Kgg"/>
+                        <outlet property="Lphone" destination="HQe-5c-KTX" id="ZpN-Np-xgw"/>
+                        <outlet property="Lstreet" destination="bep-fY-aAW" id="og9-D9-Him"/>
+                        <outlet property="image" destination="bbM-MH-Q6b" id="lXR-YS-9jr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4NI-Zb-6JR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
