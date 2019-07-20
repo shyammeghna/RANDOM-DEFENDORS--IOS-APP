@@ -13,6 +13,7 @@ class userTableViewCell: UITableViewCell {
 
     @IBOutlet weak var labelname: UILabel!
     @IBOutlet weak var labelMail:UILabel!
+    @IBOutlet weak var imageRound: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
