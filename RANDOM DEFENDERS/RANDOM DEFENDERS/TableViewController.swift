@@ -25,13 +25,12 @@ class TableViewController: UIViewController {
         guard let defViewController = segue.destination as? Def_ViewController else {
             return
         }
-        print("Ready")
         defViewController.result=selectRes
         
     }
 
     func fetchUsers(){
-        var request = URLRequest(url: URL(string: "https://randomuser.me/api/?results=10")!)
+        var request = URLRequest(url: URL(string: "https://randomuser.me/api/?results=50&seed=PACHAIAPPAN")!)
         
         request.httpMethod = "GET"
         
@@ -43,18 +42,17 @@ class TableViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                print(responseModel)
             } catch let error {
-                print("JSON Serialization ERROR: ", error)
+                print("JSON ERROR: ", error)
             }
             }.resume()
     }
-    func formatName(userName: Name) -> String {
-        return userName.title.capitalized + " " + userName.first.capitalized + " " + userName.last.uppercased()
+    func formatName(name: Name) -> String {
+        return name.title.capitalized + " " + name.first.capitalized + " " + name.last.uppercased()
     }
     
-    func getImage(url : URL)  -> UIImage{
-        let data: Data = try! Data(contentsOf: url)
+    func getImage(url : String)  -> UIImage{
+        let data: Data = try! Data(contentsOf: URL(string: url)!)
         return UIImage(data: data) ?? UIImage()
     }
     
@@ -72,10 +70,17 @@ extension TableViewController : UITableViewDataSource {
         }
         
         if let person = personArray?[indexPath.row] {
-            print("test")
-            cell.labelname.text = person.name.first
+            cell.labelname.text = formatName(name: person.name)
             cell.labelMail.text = person.email
-            
+            cell.imageRound.image = getImage(url: person.picture.thumbnail)
+            cell.imageRound.layer.cornerRadius = cell.imageRound.frame.height / 2
+        }
+        
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        }
+        else {
+            cell.backgroundColor = #colorLiteral(red: 1, green: 0.6335943419, blue: 0.8775343255, alpha: 1)
         }
         return cell
     }
@@ -84,5 +89,12 @@ extension TableViewController : UITableViewDataSource {
 }
 
 extension TableViewController : UITableViewDelegate{
-
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectRes = personArray![indexPath.row]
+        performSegue(withIdentifier: "showDef", sender: nil)
+    }
 }
